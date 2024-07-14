@@ -25,12 +25,16 @@ function updateCartUI() {
     tr.appendChild(tdName);
 
     const tdPrice = document.createElement('td');
-    tdPrice.textContent = `$${item.price.toFixed(2)}`;
+    tdPrice.textContent = `$${item.price.toFixed(0)}`;
     tr.appendChild(tdPrice);
+
+    const tdQty = document.createElement('td');
+    tdQty.textContent = `1`;
+    tr.appendChild(tdQty);
 
     cartItemsElement.appendChild(tr);
   });
 
   // Actualizar el precio total
-  totalPriceElement.textContent = totalPrice.toFixed(2);
+  totalPriceElement.textContent = totalPrice.toFixed(0);
 }
