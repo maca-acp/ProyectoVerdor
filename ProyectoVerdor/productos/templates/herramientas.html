@@ -70,7 +70,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <table id="" class="table table-striped-columns">
+      <table id="cart" class="table table-striped-columns">
         <thead>
             <tr>
                 <th scope="col">NOMBRE</th>
@@ -78,13 +78,16 @@
                 <th scope="col">CANTIDAD</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="cart-items">
 
-            <tr>
-                <th scope="row" colspan="3">Total:</th>
-                <td>$ {{ total_carrito }}</td>
-            </tr>
+            
         </tbody>
+    </table>
+    <table>
+      <tr>
+        <th scope="row" colspan="3">Total:</th>
+        <td id="total-price">$ {{ total_carrito }}</td>
+      </tr>
     </table>
     </div>
   </div>  
@@ -102,7 +105,15 @@
           <p class="card-text">{{ producto.descripcion }}</p>
           <p class="card-text">${{ producto.precio }}</p>
           <p class="card-text">Stock actual: {{ producto.stock }}</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Herramientas">Agregar al carrito</button>        </div>
+          <button 
+            type="button" 
+            class="btn btn-primary" 
+            data-bs-toggle="modal" 
+            data-bs-target="#Herramientas"
+            onclick="addToCart('{{ producto.nombre }}', {{ producto.precio }})">
+              Agregar al carrito
+          </button>      
+        </div>
       </div>
     </div>
   {% endfor %}

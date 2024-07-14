@@ -1,8 +1,8 @@
 let carro = []
-let totalPrice = 0.00;
+let totalPrice = 0;
 function addToCart(productName, productPrice) {
   // Añadir producto al carrito
-  cart.push({ name: productName, price: productPrice });
+  carro.push({ name: productName, price: productPrice });
   // Actualizar el precio total
   totalPrice += productPrice;
   // Actualizar la interfaz de usuario
@@ -17,10 +17,18 @@ function updateCartUI() {
   cartItemsElement.innerHTML = '';
 
   // Añadir cada producto del carrito a la lista
-  cart.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-      cartItemsElement.appendChild(li);
+  carro.forEach(item => {
+    const tr = document.createElement('tr');
+
+    const tdName = document.createElement('td');
+    tdName.textContent = item.name;
+    tr.appendChild(tdName);
+
+    const tdPrice = document.createElement('td');
+    tdPrice.textContent = `$${item.price.toFixed(2)}`;
+    tr.appendChild(tdPrice);
+
+    cartItemsElement.appendChild(tr);
   });
 
   // Actualizar el precio total
