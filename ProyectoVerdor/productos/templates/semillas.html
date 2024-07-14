@@ -1,0 +1,278 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semillas</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="Icon" type="image/png" href="/static/imagenes/IconoCarrito.png">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#" style="color: white">Fundación</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" style="color: white">Cuenta</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" style="color: white">Contacto</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" style="color: white">Ver pedido</a>
+    </li>
+  </ul>
+<nav class="navbar sticky-top navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="inicio.html">
+      <img src="/static/imagenes/Logo.jpg" alt="Logo" width="95" height="95" class="d-inline-block align-text-top" style="border-radius: 50%">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+            Menú de Categorías
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../semillas">Semillas</a></li>
+            <li><a class="dropdown-item" href="../tierra">Tierra y abono</a></li>
+            <li><a class="dropdown-item" href="../herramientas">Herramientas de Cultivo</a></li>
+            <li><a class="dropdown-item" href="../maceteros">Maceteros</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="container">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="¿Qué estás buscando?" aria-label="Buscar" aria-describedby="button-addon2">
+          <button class="btn btn-success" type="submit" id="button-addon2"><img src="/static/imagenes/LupaIcono.png" width="40" height="40"></button>
+        </div>
+      </div>
+      <button class="btn-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><img src="/static/imagenes/IconoCarrito.png" width="50" height="50">
+        
+      </button>
+      
+      <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div>
+            I will not close if you click outside of me.
+          </div>
+        </div>
+      </div>
+      <button class="btn-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><img src="/static/imagenes/IconoCarrito.png" width="50" height="50"></button>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+
+<div class="container">
+  <h1>Semillas</h1>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for producto in productos %}
+    <div class="col">
+      <div class="card text-center h-100">
+        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Semilla1">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion }}</p>
+          <p class="card-text">${{ producto.precio }}</p>
+          <p class="card-text">Stock actual: {{ producto.stock }}</p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Semillas">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="Semillas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Semillas en el carrito.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-center h-100">
+        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Semilla2">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion }}</p>
+          <p class="card-text">${{ producto.precio }}</p>
+          <p class="card-text">Stock actual: {{ producto.stock }}</p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Semillas">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="Semillas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Semillas en el carrito.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-center h-100">
+        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Semilla3">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion }}</p>
+          <p class="card-text">${{ producto.precio }}</p>
+          <p class="card-text">Stock actual: {{ producto.stock }}</p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Semillas">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="Semillas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Semillas en el carrito.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-center h-100">
+        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Semilla4">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion }}</p>
+          <p class="card-text">${{ producto.precio }}</p>
+          <p class="card-text">Stock actual: {{ producto.stock }}</p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Semillas">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="Semillas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Semillas en el carrito.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-center h-100">
+        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Semilla5">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion }}</p>
+          <p class="card-text">${{ producto.precio }}</p>
+          <p class="card-text">Stock actual: {{ producto.stock }}</p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Semillas">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="Semillas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Semillas en el carrito.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-center h-100">
+        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Semilla6">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion }}</p>
+          <p class="card-text">${{ producto.precio }}</p>
+          <p class="card-text">Stock actual: {{ producto.stock }}</p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Semillas">Agregar al carrito</button>
+        </div>
+  {% endfor %}
+<div class="modal fade" id="Semillas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Semillas en el carrito.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>  
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
