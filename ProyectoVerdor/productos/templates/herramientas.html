@@ -58,13 +58,38 @@
           <button class="btn btn-success" type="submit" id="button-addon2"><img src="/static/imagenes/LupaIcono.png" width="40" height="40"></button>
         </div>
       </div>
-      <button class="btn-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><img src="/static/imagenes/IconoCarrito.png" width="50" height="50"></button>
-    </div>
   </div>
 </nav>
 <br>
-<br>
+<div class="container">
+  <button class="btn-carrito2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><img src="/static/imagenes/IconoCarrito.png" width="50" height="50" display="flex" margin-left ="300">
+  </button>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">PRECIO</th>
+                <th scope="col">CANTIDAD</th>
+            </tr>
+        </thead>
+        <tbody>
 
+            <tr>
+                <th scope="row" colspan="3">Total:</th>
+                <td>$ {{ total_carrito }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+  </div>  
+</div>
+<br>
 <div class="container">
   <h1>Herramientas de Cultivo</h1>
   <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -77,148 +102,9 @@
           <p class="card-text">{{ producto.descripcion }}</p>
           <p class="card-text">${{ producto.precio }}</p>
           <p class="card-text">Stock actual: {{ producto.stock }}</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Herramientas">Agregar al carrito</button>
-        </div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Herramientas">Agregar al carrito</button>        </div>
       </div>
     </div>
-    <div class="modal fade" id="Herramientas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Herramienta en el carrito.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center h-100">
-        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Herramienta2">
-        <div class="card-body">
-          <h5 class="card-title">{{ producto.nombre }}</h5>
-          <p class="card-text">{{ producto.descripcion }}</p>
-          <p class="card-text">${{ producto.precio }}</p>
-          <p class="card-text">Stock actual: {{ producto.stock }}</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Herramientas">Agregar al carrito</button>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="Herramientas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Herramienta en el carrito.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center h-100">
-        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Herramienta3">
-        <div class="card-body">
-          <h5 class="card-title">{{ producto.nombre }}</h5>
-          <p class="card-text">{{ producto.descripcion }}</p>
-          <p class="card-text">${{ producto.precio }}</p>
-          <p class="card-text">Stock actual: {{ producto.stock }}</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Herramientas">Agregar al carrito</button>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="Herramientas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Herramienta en el carrito.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center h-100">
-        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Herramienta4">
-        <div class="card-body">
-          <h5 class="card-title">{{ producto.nombre }}</h5>
-          <p class="card-text">{{ producto.descripcion }}</p>
-          <p class="card-text">${{ producto.precio }}</p>
-          <p class="card-text">Stock actual: {{ producto.stock }}</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Herramientas">Agregar al carrito</button>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="Herramientas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Herramienta en el carrito.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center h-100">
-        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Herramienta5">
-        <div class="card-body">
-          <h5 class="card-title">{{ producto.nombre }}</h5>
-          <p class="card-text">{{ producto.descripcion }}</p>
-          <p class="card-text">${{ producto.precio }}</p>
-          <p class="card-text">Stock actual: {{ producto.stock }}</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Herramientas">Agregar al carrito</button>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="Herramientas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Articulo agregado</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Herramienta en el carrito.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center h-100">
-        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="Herramienta6">
-        <div class="card-body">
-          <h5 class="card-title">{{ producto.nombre }}</h5>
-          <p class="card-text">{{ producto.descripcion }}</p>
-          <p class="card-text">${{ producto.precio }}</p>
-          <p class="card-text">Stock actual: {{ producto.stock }}</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Herramientas">Agregar al carrito</button>
-        </div>
   {% endfor %}
   <div class="modal fade" id="Herramientas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -260,6 +146,7 @@
 </nav>
 </div>
 
-  <!--script src="{% static 'js/bootstrap.bundle.min.js' %}"></!--script-->
+<!--script src="{% static 'js/bootstrap.bundle.min.js' %}"></°script-->
+<script src= "../cart.js"></script>
 </body>
 </html>

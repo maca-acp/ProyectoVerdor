@@ -8,6 +8,13 @@
   border: none;
   cursor: pointer;
 }
+.btn-carrito2{
+  background-color: gray;
+  border: none;
+  cursor: pointer;
+  margin-left: 940px;
+  float: right;
+}
 
 .nav{
   background-color: #226A30;
