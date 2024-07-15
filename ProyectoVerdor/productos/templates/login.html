@@ -1,0 +1,116 @@
+
+{% load static %}
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inicio Sesión</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="Icon" type="image/png" href="/static/imagenes/IconoCarrito.png">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load crispy_forms_tags %}
+  </head>
+  <body>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" style="color: white">Fundación</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../login" style="color: white">Cuenta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color: white">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color: white">Ver pedido</a>
+        </li>
+      </ul>
+    
+    <nav class="navbar sticky-top navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../inicio">
+          <img src="{% static '/imagenes/Logo.jpg' %}" alt="Logo" width="95" height="95" class="d-inline-block align-text-top" style="border-radius: 50%">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+                Menú de Categorías
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../semillas">Semillas</a></li>
+                <li><a class="dropdown-item" href="../tierra">Tierra y abono</a></li>
+                <li><a class="dropdown-item" href="../herramientas">Herramientas de Cultivo</a></li>
+                <li><a class="dropdown-item" href="../maceteros">Maceteros</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="container">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="¿Qué estás buscando?" aria-label="Buscar" aria-describedby="button-addon2">
+              <button class="btn btn-success" type="submit" id="button-addon2"><img src="{% static '/imagenes/LupaIcono.png' %}" width="40" height="40"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="notificacion {{ message.tags}}">
+          {{ message }}
+        </div>
+        {% endfor %}
+      {% endif %}
+    <!---Contenedor Principal--->
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+        <!--Contenedor inicio de sesion-->
+  
+          <div class="rounder-5 p-4 bg-white box-area regist">
+            <div class="col-md-6 inisesion">
+              <h3>Inicio de Sesión</h3>                                   
+              <form id="inicio" method="POST">   
+                {% csrf_token%}                                        
+                {{ form.as_p }}
+                <button type="submit">Acceder</button>
+                
+                    <!-- errores -->
+                    <div id="inierror"></div>
+                          <div class="col-md-6 rounder-4 d-flex justify-content-center align-items-center flex-column suscrip">
+
+                            <div class="featured-image">
+                                <img src="{% static '/imagenes/ImagenSuscribir.jpg' %}" class="img-fluid" style="width: 250px">
+                            </div>
+                            <p>¡Suscríbete y consigue beneficios exclusivos!</p>
+                          </div>
+                        
+                          <div class="mini">
+                              <div class="row">
+                                  <small>¿Aun no tienes cuenta? <a href="../registro">Regístrate</a></small>
+                              </div>
+                          </div>
+
+
+                  </form>
+                </div>
+            
+          </div>
+
+    </div>
+
+
+    {% load static %}
+    <script src="{% static 'js/cart.js' %}"></script>
+
+  </body>
+
+
+</html>

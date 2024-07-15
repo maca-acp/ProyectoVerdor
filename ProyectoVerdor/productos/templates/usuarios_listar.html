@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Verdor</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="Icon" type="image/png" href="/static/imagenes/IconoCarrito.png">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#" style="color: white">Fundación</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="../login" style="color: white">Cuenta</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" style="color: white">Contacto</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" style="color: white">Ver pedido</a>
+    </li>
+  </ul>
+
+<nav class="navbar sticky-top navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../inicio">
+      <img src="{% static '/images/Logo.jpg' %}" alt="Logo" width="95" height="95" class="d-inline-block align-text-top" style="border-radius: 50%">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menú de Categorías
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'Semillas.html' %}">Semillas</a></li>
+            <li><a class="dropdown-item" href="{% url 'Tierra.html' %}">Tierra y abono</a></li>
+            <li><a class="dropdown-item" href="{% url 'Herramientas.html' %}">Herramientas de Cultivo</a></li>
+            <li><a class="dropdown-item" href="{% url 'Maceteros.html' %}">Maceteros</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="container">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="¿Qué estás buscando?" aria-label="Buscar" aria-describedby="button-addon2">
+          <button class="btn btn-success" type="submit" id="button-addon2"><img src="{% static '/images/LupaIcono.png' %}" width="40" height="40"></button>
+        </div>
+      </div>
+      <button class="btn-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><img src="{% static '/images/IconoCarrito.png' %}" width="50" height="50"></button>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+  <div class="container">
+    <table>
+        {% if users %}
+            <th>Rut</th>
+            <th>Nombre</th>
+            <th>Apellido P.</th>
+            <th>Correo</th>
+
+            {% for x in users %}
+                <tr>
+                    <td> {{ x.rut }} </td>
+                    <td> {{ x.nombre }} </td>
+                    <td> {{ x.apellido_paterno }} </td>
+                    <td> {{ x.correo }} </td>
+
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+  </div>
+  {% load static %}
+ <script src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>

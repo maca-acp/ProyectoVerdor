@@ -1,0 +1,185 @@
+
+{% load static %}
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Registro</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="Icon" type="image/png" href="/static/imagenes/IconoCarrito.png">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+  </head>
+  <body>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#" style="color: white">Fundación</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../login" style="color: white">Cuenta</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color: white">Contacto</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color: white">Ver pedido</a>
+      </li>
+    </ul>
+  
+  <nav class="navbar sticky-top navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../inicio">
+        <img src="/static/imagenes/Logo.jpg" alt="Logo" width="95" height="95" class="d-inline-block align-text-top" style="border-radius: 50%">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+              Menú de Categorías
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../semillas">Semillas</a></li>
+              <li><a class="dropdown-item" href="../tierra">Tierra y abono</a></li>
+              <li><a class="dropdown-item" href="../herramientas">Herramientas de Cultivo</a></li>
+              <li><a class="dropdown-item" href="../maceteros">Maceteros</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="container">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="¿Qué estás buscando?" aria-label="Buscar" aria-describedby="button-addon2">
+            <button class="btn btn-success" type="submit" id="button-addon2"><img src="/static/imagenes/LupaIcono.png" width="40" height="40"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  {% if messages %}
+    {% for message in messages %}
+    <div class="notificacion {{ message.tags}}">
+      {{ message }}
+    </div>
+    {% endfor %}
+  {% endif %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100" style="padding: 15px;">
+
+
+
+        <div class=" rounder-5 p-4 bg-white box-area">
+          <form method="POST" >
+            {% csrf_token%} 
+              <h2>Regístrate</h2>
+              <small><p>¿Estás registrado(a)? <a href="../login">Inicia Sesión</a></p></small>
+              
+              <div class="titulos">
+                  <h5>DATOS DE LA CUENTA</h5>
+              </div>
+
+
+              <div class="mini">
+                  <p>Email</p>
+              </div>
+
+              <div class="input-group mb-1" >
+                  <input type="text" name="correo" class="form-control form-control-lg bg-light fs6" id="correo">
+                  <div id="mensajecorreo" class="errores">Ingresa el correo</div>
+              </div>
+              <div class="mini">
+                  Contraseña
+              </div>
+              <div class="input-group mb-1">
+                  <input type="password" name="contraseña"  class="form-control form-control-lg bg-light fs6" placeholder="" id="password">
+                  <div id="mensajepassword" class="errores">Ingresa la contraseña</div>
+              </div>
+
+
+              <div class="titulos">
+                  <h5>DATOS PERSONALES</h5>
+              </div>
+
+              
+              <div class="mini">
+                  <p>Nombre</p>
+              </div>
+              <div class="input-group mb-1" >
+                  <input type="text" name="nombre" class="form-control form-control-lg bg-light fs6" placeholder="Ej: Constanza" id="nombre">
+                  <div id="mensajenombre" class="errores">Ingresa tu nombre</div>
+              </div>
+
+
+              <div class="mini">
+                  <p>Apellido paterno</p>
+              </div>
+              <div class="input-group mb-1" >
+                  <input type="text" name="apellido_paterno" class="form-control form-control-lg bg-light fs6" placeholder="Ej: Suarez" id="appat">
+                  <div id="mensajeapellido" class="errores">Ingresa tu apellido</div>
+              </div>
+
+
+              <div class="mini">
+                  <p>Apellido materno</p>
+              </div>
+              <div class="input-group mb-1" >
+                  <input type="text" name="apellido_materno" class="form-control form-control-lg bg-light fs6" placeholder="Ej: Arteaga" id="apmat">
+                  <div id="mensajeapellidoma" class="errores">Ingresa tu apellido materno</div>
+              </div>
+              
+              <div class="mini">
+                <p>Fecha nacimiento</p>
+            </div>
+            <div class="input-group mb-1" >
+                <input type="date" name="fecha_nacimiento" class="form-control form-control-lg bg-light fs6" id="nac">
+                <div id="mensajenac" class="errores">Ingresa tu fecha de nacimiento</div>
+            </div>
+
+
+              <div class="mini">
+                  <p>Rut</p>
+              </div>
+              <div class="input-group mb-1" >
+                  <input type="text" name="rut" class="form-control form-control-lg bg-light fs6" placeholder="11.111.111-1" id="rut">
+                  <div id="mensajerut" class="errores">Ingresa tu RUT</div>
+              </div>
+
+              <div class="mini">
+                  <p>Numero de telefono</p>
+              </div>
+              <div class="input-group mb-1" >
+                  <input type="text" name="telefono" class="form-control form-control-lg bg-light fs6" placeholder="9766798876" id="fono">
+                  <div id="mensajefono" class="errores">Ingresa tu telefono</div>
+              </div>
+
+
+              
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onclick="check(this)">
+                  <label class="form-check-label" for="flexCheckDefault">
+                      <div class="check">
+                          Declaro haber leído, y acepto expresamente los Términos y Condiciones junto a su Política de Privacidad y Protección de Datos.
+                      </div>
+                  </label>
+                  <div id="mensajecheck" class="errores">Acepta los terminos y condiciones</div>
+              </div>
+
+
+
+              <div class="input-group mb-1">
+                  <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" id="bRegistro" disabled>Regístrate</button>
+              </div>
+          </form>
+        </div>
+
+</div>
+
+
+    
+{% load static %}
+<script src="{% static 'js/cart.js' %}"></script>
+  </body>
+</html>

@@ -1,6 +1,11 @@
-from django.shortcuts import render
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from .forms import UsuarioForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 
-from .models import Producto,Categoria,CartItem
+from .models import Producto,Categoria,CartItem,User
 # Create your views here.
 
 def semillas(request):
@@ -38,3 +43,27 @@ def inicio(request):
   productos= Producto.objects.all()
   context={"productos":productos}
   return render(request, 'inicio.html', context)
+
+
+def login(request):
+    return render(request, 'login.html')
+
+def crud(request):
+    return render(request, 'usuarios_listar.html')
+
+def registro(request):  
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            correo_user = form.cleaned_data.get("correo")
+            messages.success(request, 'Usuario guardado con exito')
+            return redirect('login')
+    else:
+        form = UsuarioForm()
+    return render(request, 'registro.html')
+
+
+def home(request):
+    context = {}
+    return render(request, 'home.html', context)
