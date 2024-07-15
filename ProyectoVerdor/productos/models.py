@@ -20,3 +20,12 @@ class Producto(models.Model):
 
   def __str__(self):
     return str(self.nombre)+" "+str(self.descripcion)+" "+str(self.precio)+" "+str(self.id_cate)+" "+str(self.stock)
+  
+
+class CartItem(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.name} - {self.quantity} - {self.price}"

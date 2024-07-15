@@ -38,3 +38,9 @@ function updateCartUI() {
   // Actualizar el precio total
   totalPriceElement.textContent = totalPrice.toFixed(0);
 }
+
+function submitCart() {
+  const cartItemsInput = document.getElementById('cart-items-input');
+  cartItemsInput.value = cart.map(item => `${item.name},${item.price},${item.quantity}`).join(';');
+  document.getElementById('cart-form').submit();
+}

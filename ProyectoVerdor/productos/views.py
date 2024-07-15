@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Producto,Categoria
+from .models import Producto,Categoria,CartItem
 # Create your views here.
 
 def semillas(request):
@@ -24,3 +24,17 @@ def maceteros(request):
   return render(request, 'maceteros.html', context)
   
 
+def save_cart(request):
+  if request.method == 'POST':
+    cart_items = request.POST.getlist('cart_items')
+    for item in cart_items:
+      name, price, quantity = item.split(',')
+      CartItem.objects.create(name=name, price=float(price), quantity=int(quantity))
+    return JsonResponse({'status': 'success'})
+  return JsonResponse({'status': 'failed'})
+
+
+def inicio(request):
+  productos= Producto.objects.all()
+  context={"productos":productos}
+  return render(request, 'inicio.html', context)

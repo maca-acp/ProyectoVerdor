@@ -32,7 +32,7 @@
 
 <nav class="navbar sticky-top navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="Vista_Inicio.html">
+    <a class="navbar-brand" href="../inicio">
       <img src="/static/imagenes/Logo.jpg" alt="Logo" width="95" height="95" class="d-inline-block align-text-top" style="border-radius: 50%">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,6 +88,11 @@
         <td id="total-price">$ {{ total_carrito }}</td>
       </tr>
     </table>
+     <!-- Formulario para enviar los datos del carrito -->
+     <form id="cart-form" method="post" action="{% url 'save_cart' %}">
+      <input type="hidden" name="cart_items" id="cart-items-input">
+      <button type="button" onclick="submitCart()">Comprar</button>
+     </form>
     </div>
   </div>  
 </div>
